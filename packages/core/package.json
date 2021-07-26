@@ -1,6 +1,7 @@
 {
   "name": "@supojs/core",
   "version": "1.0.4",
+  "private": "false",
   "main": "dist/index",
   "types": "dist/index",
   "files": [
@@ -17,5 +18,5 @@
     "rimraf": "~3.0.2",
     "typescript": "~4.3.0"
   },
-  "gitHead": "3cbb8e8b09516b3efc6a766afea3887f9a5d9a20"
+  "gitHead": "601977b83de53d2c2044e38fe025c802bfec8adf"
 }
