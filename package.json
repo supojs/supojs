@@ -1,0 +1,22 @@
+{
+  "name": "supojs",
+  "description": "SUPer Opinionated JS backend framework",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "publish": "lerna publish",
+    "test": "lerna run test",
+    "lint": "eslint --ext js,ts ."
+  },
+  "devDependencies": {
+    "eslint": "~7.30.0",
+    "lerna": "~4.0.0",
+    "typescript": "~4.3.0"
+  },
+  "engines": {
+    "npm": ">=7"
+  }
+}
