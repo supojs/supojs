@@ -1,7 +1,6 @@
 {
   "name": "supojs",
   "description": "SUPer Opinionated JS backend framework",
-  "private": "false",
   "workspaces": [
     "packages/*"
   ],
