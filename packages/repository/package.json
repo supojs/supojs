@@ -1,6 +1,6 @@
 {
   "name": "@supojs/repository",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist/index",
   "types": "dist/index",
   "files": [
@@ -14,7 +14,7 @@
     "test": "npm run build"
   },
   "dependencies": {
-    "@supojs/core": "^1.0.8"
+    "@supojs/core": "^1.0.10"
   },
   "devDependencies": {
     "rimraf": "~3.0.2",
