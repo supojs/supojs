@@ -1,1 +1,1 @@
-export const meaningOfLife = 41;
+export const meaningOfLife = 42;
