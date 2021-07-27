@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES6",
+    "target": "ES2021",
+    "module": "ES2020",
+    "lib": ["ES2021", "DOM"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
     "sourceMap": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "types": [],
-    "jsx": "react"
+    "types": ["Node"]
   },
   "exclude": [
     "node_modules",
