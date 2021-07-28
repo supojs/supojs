@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to SUPO JS
 
 You can use the [editor on GitHub](https://github.com/supojs/supojs/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
