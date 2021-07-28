@@ -1,10 +1,10 @@
-import { readdirSync, statSync } from 'fs';
+import { readdirSync, statSync, existsSync } from 'fs';
 import { createServer, IncomingMessage, Server, ServerResponse } from 'http';
 import { Container } from './Container';
 import { RequestParams } from './RequestParams';
 import { URL } from 'url';
 
-export class GOX {
+export class SupoServer {
   public baseUrl: string;
   private server: Server;
 
@@ -16,7 +16,7 @@ export class GOX {
     const container = this.buildContainer(`${path}/src/`);
 
     const routes = this.walk(`${path}/src/routes`);
-    routes.push(...this.walkResources(`${path}/src/resources`));
+    //routes.push(...this.walkResources(`${path}/src/resources`));
 
     this.server = createServer(
       async (req: IncomingMessage, res: ServerResponse) => {
@@ -37,14 +37,20 @@ export class GOX {
 
           const { default: controller } = await import(route.file);
           const { default: resource } = await import(route.resourceClass);
+
+          const requestParams = new RequestParams(
+            routeWithParams.groups,
+            Object.fromEntries(url.searchParams),
+            JSON.parse(req.read())
+          );
+          
+          const params = [];
+          for(let paramName of this.getParamNames(controller)) {
+            params.push(paramName === 'params' ? requestParams : await container.get(paramName));
+          }
+          
           const response = await controller(
-            new RequestParams(
-              routeWithParams.groups,
-              Object.fromEntries(url.searchParams),
-              JSON.parse(req.read())
-            ),
-            container,
-            resource
+            ...params
           );
           res.end(JSON.stringify(response, null, 2));
         } catch (error) {
@@ -60,15 +66,20 @@ export class GOX {
 
   buildContainer(dir: string) {
     const container = new Container();
-    const list = readdirSync(`${dir}repositories`);
+
+    if(!existsSync(`${dir}services`)) {
+      return container;
+    }
+
+    const list = readdirSync(`${dir}services`);
 
     for (let file of list) {
-      file = `${dir}repositories/` + file;
+      file = `${dir}services/` + file;
       const resourceClass = file
-        .split('src/repositories/')[1]
-        .replace('.repo.ts', '');
+        .split('src/services/')[1]
+        .replace('.ts', '');
 
-      container.addRepository(resourceClass, file);
+      container.add(resourceClass.split('.').join(''), file);
     }
 
     return container;
@@ -144,5 +155,16 @@ export class GOX {
     }
 
     return results;
+  }
+
+  STRIP_COMMENTS = /(\/\/.*$)|(\/\*[\s\S]*?\*\/)|(\s*=[^,\)]*(('(?:\\'|[^'\r\n])*')|("(?:\\"|[^"\r\n])*"))|(\s*=[^,\)]*))/mg;
+  ARGUMENT_NAMES = /([^\s,]+)/g;
+
+  getParamNames(func) {
+    var fnStr = func.toString().replace(this.STRIP_COMMENTS, '');
+    var result = fnStr.slice(fnStr.indexOf('(')+1, fnStr.indexOf(')')).match(this.ARGUMENT_NAMES);
+    if(result === null)
+      result = [];
+    return result;
   }
 }

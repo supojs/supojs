@@ -1,21 +1,13 @@
 export class Container {
-  private repos = {};
+  
+  private services = {};
 
-  addRepository(resourceClass, repo) {
-    this.repos[resourceClass] = repo;
+  async get(paramName: string) {
+    const { default: service } = await import(this.services[paramName.toLowerCase()]);
+    return new service();
   }
 
-  async getRepository(resourceClass) {
-    const repo = this.repos[resourceClass] ?? this.repos['default'];
-
-    if (typeof repo === 'string') {
-      const { default: repoClass } = await import(repo);
-      const instancedRepo = new repoClass(resourceClass);
-      this.repos[resourceClass] = instancedRepo;
-
-      return instancedRepo;
-    }
-
-    return repo;
+  add(paramName: string, service: any) {
+    this.services[paramName.toLowerCase()] = service;
   }
 }

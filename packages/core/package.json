@@ -7,13 +7,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "npm run test && npm run clean && npm run compile",
     "clean": "rimraf -rf ./dist",
     "compile": "tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
-    "test": "npm run build"
+    "test": "../../node_modules/.bin/jest -i -c ../../jest.config.js"
   },
   "devDependencies": {
+    "await-to-js": "^3.0.0",
+    "axios": "^0.21.1",
     "rimraf": "~3.0.2",
     "typescript": "~4.3.0"
   },

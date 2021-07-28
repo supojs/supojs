@@ -1,1 +1,3 @@
-export const meaningOfLife = 42;
+import Repository from "./contracts/Repository";
+
+export {Repository}

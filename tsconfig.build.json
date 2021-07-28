@@ -8,7 +8,7 @@
     "sourceMap": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "types": ["Node"]
+    "types": ["Node", "jest"]
   },
   "exclude": [
     "node_modules",
