@@ -11,12 +11,13 @@
     "clean": "rimraf -rf ./dist",
     "compile": "tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
-    "test": "../../node_modules/.bin/jest -i -c ../../jest.config.js"
+    "test": "./node_modules/.bin/jest -i"
   },
   "devDependencies": {
     "await-to-js": "^3.0.0",
     "axios": "^0.21.1",
     "rimraf": "~3.0.2",
+    "ts-jest": "^27.0.4",
     "typescript": "~4.3.0"
   },
   "publishConfig": {
