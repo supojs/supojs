@@ -1,0 +1,35 @@
+{
+  "name": "@supojs/cli",
+  "version": "1.0.13",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run test && npm run clean && npm run compile",
+    "clean": "rimraf -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "../../node_modules/.bin/jest -i --passWithNoTests",
+    "run": "npm run build && node dist/index.js"
+  },
+  "bin": {
+    "supojs": "dist/index.js"
+  },
+  "devDependencies": {
+    "await-to-js": "^3.0.0",
+    "axios": "^0.21.1",
+    "rimraf": "~3.0.2",
+    "shelljs": "^0.8.4",
+    "ts-jest": "^27.0.4",
+    "typescript": "~4.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "0ad3c5f51f63f773e1f87a76008f17f2ec83e0b4",
+  "dependencies": {
+    "commander": "^8.1.0"
+  }
+}
