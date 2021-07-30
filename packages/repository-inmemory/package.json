@@ -7,10 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run test && npm run clean && npm run compile",
-    "clean": "rimraf -rf ./dist",
-    "compile": "tsc -p tsconfig.build.json",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run test",
     "test": "../../node_modules/.bin/jest -i --passWithNoTests"
   },
   "dependencies": {
@@ -19,5 +16,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "0ad3c5f51f63f773e1f87a76008f17f2ec83e0b4"
+  "gitHead": "e42b0dda1230ed6b75417d1a029de366b669253d"
 }
