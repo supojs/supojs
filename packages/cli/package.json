@@ -10,7 +10,7 @@
     "build": "npm run test",
     "prepublishOnly": "npm run build",
     "test": "../../node_modules/.bin/jest -i --passWithNoTests",
-    "run": "npm run build && node src/index.js"
+    "run": "npm run build && npm unlink @supojs/cli -g && npm link && supojs"
   },
   "bin": {
     "supojs": "src/index.js"
@@ -20,6 +20,7 @@
   },
   "gitHead": "0ad3c5f51f63f773e1f87a76008f17f2ec83e0b4",
   "dependencies": {
-    "commander": "^8.1.0"
+    "commander": "^8.1.0",
+    "shelljs": "^0.8.4"
   }
 }

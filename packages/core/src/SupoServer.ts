@@ -61,7 +61,7 @@ export class SupoServer {
       }
     );
 
-    this.server.listen(port, hostname, () => {});
+    this.server.listen(port, hostname, () => console.log(`Server ready at http://${hostname}:${port}`));
   }
 
   buildContainer(dir: string) {
