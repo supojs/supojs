@@ -1,10 +1,21 @@
 {
-  "extends": "./tsconfig.build.json",
-
   "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "lib": ["ES2021", "DOM"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "types": ["Node", "jest"],
     "baseUrl": ".",
     "paths": {
       "@supojs/*": ["packages/*/src"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

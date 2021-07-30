@@ -1,9 +1,7 @@
-#! /usr/bin/env node
+import { Command } from "commander";
+import shell from "shelljs";
 
-const Command = require('commander').Command;
-const shell = require('shelljs');
-
-const SupoServer = require("@supojs/core").SupoServer;
+import {SupoServer} from "@supojs/core";
 
 const program = new Command();
 const repoFolder = 'xxxxxz-templates-repo';

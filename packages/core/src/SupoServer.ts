@@ -36,7 +36,7 @@ export class SupoServer {
           const routeWithParams = new RegExp(route.regex, 'g').exec(pathname);
 
           const { default: controller } = await import(route.file);
-          const { default: resource } = await import(route.resourceClass);
+          //const { default: resource } = await import(route.resourceClass);
 
           const requestParams = new RequestParams(
             routeWithParams.groups,
