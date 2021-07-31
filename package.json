@@ -8,7 +8,7 @@
     "clean": "lerna run clean",
     "build": "lerna run build",
     "publish:alpha": "lerna publish prerelease -y --force-publish",
-    "publish:minor": "lerna publish minor -y --force-publish",
+    "publish:patch": "lerna publish patch -y --force-publish",
     "test": "lerna run test",
     "lint": "eslint --ext js,ts ."
   },
