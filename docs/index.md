@@ -102,7 +102,7 @@ export default function(randomNumber: RandomNumber) {
 ```
 
 ### Request params
-A special service is requestParams, inject it to access path params, query params or request body;
+A special service is **requestParams**, inject it to access path params, query params or request body;
 
 ```ts
 import { RequestParams } from "@supojs/core";
