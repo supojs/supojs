@@ -1,37 +1,94 @@
-## Welcome to SUPO JS
+## SUPer Opinionated JS Backend
 
-You can use the [editor on GitHub](https://github.com/supojs/supojs/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- [Supo.js](#supojs)
+  - [Install cli](#install-cli)
+  - [Quickstart](#quickstart)
+- [Routing](#routing)
+  - [Index routes](#index-routes)
+  - [Nested routes](#nested-routes)
+  - [Dynamic route segments](#dynamic-route-segments)
+- [Services](#services)
 
-### Markdown
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Supo.js
 
-```markdown
-Syntax highlighted code block
+### Install cli
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```bash
+npm i -g @supojs/cli
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Quickstart
 
-### Jekyll Themes
+```bash
+supojs create app
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/supojs/supojs/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+cd app
 
-### Support or Contact
+supojs serve
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Open [http://127.0.0.1:3000/hello-world](http://127.0.0.1:3000/hello-world)
+
+## Routing
+
+SupoJS has a file-system based router.
+
+When a file is added to the **routes** directory it's automatically available.
+
+### Index routes
+
+The router will automatically route files named index to the root of the directory.
+
+> routes/index.ts → /
+
+> routes/blog/index.ts → /blog
+
+### Nested routes
+The router supports nested files. If you create a nested folder structure files will be automatically routed in the same way still.
+
+> routes/blog/first-post.ts → /blog/first-post
+
+> routes/dashboard/settings/username.ts → /dashboard/settings/username
+
+
+### Dynamic route segments
+To match a dynamic segment you can use the bracket syntax. This allows you to match named parameters.
+
+> pages/blog/[slug].ts → /blog/:slug (/blog/hello-world)
+
+> pages/[username]/settings.ts → /:username/settings (/foo/settings)
+
+## Services
+
+SupoJS has a file-system based dependency injection. It will inject the service with the same **name** as the paramerter after removing "." and "-" and transforming to camel case.
+
+**Types are ignored!! Only param name is used**
+
+> services/email.ts → function(email: EmailService)
+
+> services/email.service.ts → function(emailService: EmailService)
+
+> services/email-amazon.service.ts → function(emailAmazonService: EmailService)
+
+```ts
+import FooService from "../services/foo.service";
+
+export default function(fooService: FooService) {
+  return fooService.getBar();
+}
+```
+
+```ts
+import RandomNumber from "../services/random-number";
+
+export default function(randomNumber: RandomNumber) {
+  return randomNumber.generate();
+}
+```
+

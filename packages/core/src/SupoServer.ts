@@ -79,7 +79,7 @@ export class SupoServer {
         .split('src/services/')[1]
         .replace('.ts', '');
 
-      container.add(resourceClass.split('.').join(''), file);
+      container.add(resourceClass.split('.').join('').split('-').join(''), file);
     }
 
     return container;
