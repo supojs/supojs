@@ -1,6 +1,6 @@
 {
   "name": "@supojs/core",
-  "version": "1.0.14-alpha.1",
+  "version": "1.1.0",
   "main": "src/index",
   "types": "src/index",
   "files": [
