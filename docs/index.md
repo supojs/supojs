@@ -2,12 +2,12 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Supo.js](#supojs)
   - [Install cli](#install-cli)
   - [Quickstart](#quickstart)
 - [Routing](#routing)
+  - [HTTP method](#http-method)
   - [Index routes](#index-routes)
   - [Nested routes](#nested-routes)
   - [Dynamic route segments](#dynamic-route-segments)
@@ -41,28 +41,36 @@ SupoJS has a file-system based router.
 
 When a file is added to the **routes** directory it's automatically available.
 
+### HTTP method
+
+The http method is defined in the file name.
+
+> routes/index.get.ts → GET /
+
+> routes/users.post.ts → POST /users
+
 ### Index routes
 
 The router will automatically route files named index to the root of the directory.
 
-> routes/index.ts → /
+> routes/index.get.ts → /
 
-> routes/blog/index.ts → /blog
+> routes/blog/index.get.ts → /blog
 
 ### Nested routes
 The router supports nested files. If you create a nested folder structure files will be automatically routed in the same way still.
 
-> routes/blog/first-post.ts → /blog/first-post
+> routes/blog/first-post.get.ts → /blog/first-post
 
-> routes/dashboard/settings/username.ts → /dashboard/settings/username
+> routes/dashboard/settings/username.get.ts → /dashboard/settings/username
 
 
 ### Dynamic route segments
 To match a dynamic segment you can use the bracket syntax. This allows you to match named parameters.
 
-> pages/blog/[slug].ts → /blog/:slug (/blog/hello-world)
+> pages/blog/[slug].get.ts → /blog/:slug (/blog/hello-world)
 
-> pages/[username]/settings.ts → /:username/settings (/foo/settings)
+> pages/[username]/settings.get.ts → /:username/settings (/foo/settings)
 
 ## Services
 
