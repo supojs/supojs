@@ -66,7 +66,7 @@ To match a dynamic segment you can use the bracket syntax. This allows you to ma
 
 ## Services
 
-SupoJS has a file-system based dependency injection. It will inject the service with the same **name** as the paramerter after removing "." and "-" and transforming to camel case.
+SupoJS has a file-system based dependency injection. It will inject the service with the same **name** as the paramerter after removing "." and "-" (case is ignored).
 
 **Types are ignored!! Only param name is used**
 
