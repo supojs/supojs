@@ -46,7 +46,7 @@ export class SupoServer {
           
           const params = [];
           for(let paramName of this.getParamNames(controller)) {
-            params.push(paramName === 'params' ? requestParams : await container.get(paramName));
+            params.push(paramName === 'requestParams' ? requestParams : await container.get(paramName));
           }
           
           const response = await controller(

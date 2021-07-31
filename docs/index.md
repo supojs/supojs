@@ -12,6 +12,7 @@
   - [Nested routes](#nested-routes)
   - [Dynamic route segments](#dynamic-route-segments)
 - [Services](#services)
+  - [Request params](#request-params)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -100,3 +101,13 @@ export default function(randomNumber: RandomNumber) {
 }
 ```
 
+### Request params
+A special service is requestParams, inject it to access path params, query params or request body;
+
+```ts
+import { RequestParams } from "@supojs/core";
+
+export default function (requestParams: RequestParams) {
+  return requestParams.path; // or .query or .body
+}
+```

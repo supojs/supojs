@@ -1,5 +1,5 @@
 import { RequestParams } from "packages/core/src/RequestParams";
 
-export default function (params: RequestParams) {
-  return params.query;
+export default function (requestParams: RequestParams) {
+  return requestParams.query;
 }
